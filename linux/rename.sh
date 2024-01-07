@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Welcome to the interactive file renaming script by codding-nepal."
+echo "Welcome to the interactive file renaming script by codding-nepal (https://github.com/codding-nepale/utilscripts/)."
 echo
 
 read -p "Enter the source folder path (press Enter to use the current folder): " sourceFolder
