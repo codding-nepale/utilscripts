@@ -22,7 +22,7 @@ for extension in $fileExtensions; do
     find "$sourceFolder" -type f -name "*.$extension" | while read -r file; do
         filename=$(basename "$file")
         dirname=$(dirname "$file")
-        newName="$dirname/${filename%.*}.ts"
+        newName="$dirname/${filename%.*}.$extension"
 
         excludeFolder=false
         if [ -n "$excludeFolders" ]; then
