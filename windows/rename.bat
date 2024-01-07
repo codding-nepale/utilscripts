@@ -5,15 +5,20 @@ echo Welcome to the interactive file renaming script by codding-nepal (https://g
 echo.
 
 set /p "sourceFolder=Enter the source folder path (press Enter to use the current folder): "
-if not defined sourceFolder set "sourceFolder=.."
+if not defined sourceFolder set "sourceFolder=."
 
-echo Enter the file extensions you want to rename (separated by a space, e.g., js mjs):
-set /p "fileExtensions=Extensions : "
+set /p "fileExtensions=Enter the file extensions you want to rename (separated by a space, e.g., js mjs): "
 if not defined fileExtensions (
     echo No extensions specified. The script will exit.
     pause
     exit /b
 )
+
+for %%E in (%fileExtensions%) do (
+    set "firstExtension=%%E"
+    goto :break
+)
+:break
 
 set /p "excludeFolders=Enter folders to exclude (separated by a space, press Enter to skip): "
 
@@ -24,7 +29,7 @@ for %%E in (%fileExtensions%) do (
     for /r "%sourceFolder%" %%F in (*."%%E") do (
         set "filename=%%~nF"
         set "extension=%%~xF"
-        set "newName=!filename!.!extension!"
+        set "newName=!filename!.!firstExtension!"
 
         set "excludeFolder="
         if defined excludeFolders (
