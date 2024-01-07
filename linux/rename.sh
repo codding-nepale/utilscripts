@@ -4,7 +4,7 @@ echo "Welcome to the interactive file renaming script by codding-nepal (https://
 echo
 
 read -p "Enter the source folder path (press Enter to use the current folder): " sourceFolder
-sourceFolder=${sourceFolder:-..}
+sourceFolder=${sourceFolder:-.}
 
 read -p "Enter the file extensions you want to rename (separated by a space, e.g., js mjs): " fileExtensions
 if [ -z "$fileExtensions" ]; then
@@ -12,6 +12,9 @@ if [ -z "$fileExtensions" ]; then
     read -p "Press Enter to continue..."
     exit 1
 fi
+
+IFS=' ' read -ra extensionsArray <<< "$fileExtensions"
+firstExtension="${extensionsArray[0]}"
 
 read -p "Enter folders to exclude (separated by a space, press Enter to skip): " excludeFolders
 
@@ -22,7 +25,7 @@ for extension in $fileExtensions; do
     find "$sourceFolder" -type f -name "*.$extension" | while read -r file; do
         filename=$(basename "$file")
         dirname=$(dirname "$file")
-        newName="$dirname/${filename%.*}.$extension"
+        newName="$dirname/${filename%.*}.$firstExtension"
 
         excludeFolder=false
         if [ -n "$excludeFolders" ]; then
