@@ -1,7 +1,7 @@
 @echo off
 setlocal enabledelayedexpansion
 
-echo Welcome to the interactive file renaming script by codding-nepal.
+echo Welcome to the interactive file renaming script by codding-nepal (https://github.com/codding-nepale/utilscripts/).
 echo.
 
 set /p "sourceFolder=Enter the source folder path (press Enter to use the current folder): "
