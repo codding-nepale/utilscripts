@@ -24,7 +24,7 @@ for %%E in (%fileExtensions%) do (
     for /r "%sourceFolder%" %%F in (*."%%E") do (
         set "filename=%%~nF"
         set "extension=%%~xF"
-        set "newName=!filename!.ts"
+        set "newName=!filename!.!extension!"
 
         set "excludeFolder="
         if defined excludeFolders (
